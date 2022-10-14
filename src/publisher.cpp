@@ -23,7 +23,7 @@
 
 int main()
 {
-    constexpr const char APP_NAME[]{"publihser"};
+    constexpr const char APP_NAME[]{"publisher"};
     iox::runtime::PoshRuntime::initRuntime(APP_NAME);
 
     iox::popo::Publisher<uint64_t> publisher({"MyApp", "Counter", "u64"});
