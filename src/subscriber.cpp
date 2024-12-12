@@ -15,8 +15,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "iceoryx_posh/popo/subscriber.hpp"
-#include "iceoryx_hoofs/posix_wrapper/signal_watcher.hpp"
 #include "iceoryx_posh/runtime/posh_runtime.hpp"
+#include "iox/signal_watcher.hpp"
 
 #include <cstdint>
 #include <iostream>
@@ -28,7 +28,7 @@ int main()
 
     iox::popo::Subscriber<uint64_t> subscriber({"MyApp", "Counter", "u64"});
 
-    while (!iox::posix::hasTerminationRequested())
+    while (!iox::hasTerminationRequested())
     {
         subscriber.take()
             .and_then([](auto& sample) { std::cout << "Hello World: " << *sample << std::endl; })

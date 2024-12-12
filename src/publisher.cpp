@@ -15,8 +15,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "iceoryx_posh/popo/publisher.hpp"
-#include "iceoryx_hoofs/posix_wrapper/signal_watcher.hpp"
 #include "iceoryx_posh/runtime/posh_runtime.hpp"
+#include "iox/signal_watcher.hpp"
 
 #include <cstdint>
 #include <iostream>
@@ -29,7 +29,7 @@ int main()
     iox::popo::Publisher<uint64_t> publisher({"MyApp", "Counter", "u64"});
 
     uint64_t counter{1U};
-    while (!iox::posix::hasTerminationRequested())
+    while (!iox::hasTerminationRequested())
     {
         publisher.loan()
             .and_then([&](auto& sample) {
